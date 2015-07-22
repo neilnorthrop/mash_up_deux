@@ -1,4 +1,4 @@
-require './lib/simple_server/request'
+require './lib/app_server/request'
 require 'minitest/autorun'
 
 class TestRequest < MiniTest::Test

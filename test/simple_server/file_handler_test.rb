@@ -1,6 +1,6 @@
 require 'net/http'
 require 'minitest/autorun'
-require './lib/simple_server/file_handler.rb'
+require './lib/app_server/file_handler.rb'
 
 class FileHandlerTest < MiniTest::Test
 

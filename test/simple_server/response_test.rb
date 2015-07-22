@@ -1,4 +1,4 @@
-require './lib/simple_server/response.rb'
+require './lib/app_server/response.rb'
 require 'minitest/autorun'
 require 'net/http'
 
