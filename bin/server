@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require File.expand_path(File.join(File.dirname(__FILE__),'..','lib/simple_server/simple_server.rb'))
+require File.expand_path(File.join(File.dirname(__FILE__),'..','lib/simple_server/request_observer.rb'))
+
+args = ARGV
+
+if args.empty?
+  server = SimpleServer.new
+  server.add_observer(RequestObserver.new)
+  server.run
+else
+  server = SimpleServer.new(ARGV[0], ARGV[1])
+  server.add_observer(RequestObserver.new)
+  server.run
+end
