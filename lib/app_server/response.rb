@@ -1,5 +1,3 @@
-require 'socket'
-
 class Response
   attr_reader :header, :body
 
