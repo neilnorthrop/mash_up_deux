@@ -1,4 +1,4 @@
-require_relative 'request'
+require_relative '../app_server/request'
 
 class RequestObserver
   def initialize(request=Request.new)
