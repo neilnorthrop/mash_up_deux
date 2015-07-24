@@ -29,7 +29,7 @@ class SimpleServer
     begin
       loop do
         Thread.start(server.accept) do |socket|
-          LOG.debug("Accepted socket: #{socket.inspect}\r\n")
+          LOG.debug("Accepted socket: #{socket.inspect}\n")
 
         begin
           data = socket.readpartial(READ_CHUNK)
@@ -52,7 +52,7 @@ class SimpleServer
   def logging_string(string)
     string = string.split("\r\n")
     string.each do |line|
-      LOG.info(line)
+      LOG.debug(line)
     end
   end
 
