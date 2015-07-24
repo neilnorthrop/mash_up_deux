@@ -5,7 +5,7 @@ require_relative 'request_subject'
 class SimpleServer
   include RequestSubject
 
-  attr_reader :server, :level, :output, :host, :port, :request
+  attr_reader :server, :host, :port
 
   READ_CHUNK = 1024 * 4
 
@@ -37,9 +37,7 @@ class SimpleServer
           break
         end
           logging_string(data)
-          # LOG.debug("Incoming request: #{request.inspect}\r\n")
           response = notify_observers(data)
-          # LOG.debug("Built response: #{response.inspect}\r\n")
           socket.print response.stream
           logging_string(response.header)
 
