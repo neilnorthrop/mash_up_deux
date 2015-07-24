@@ -1,7 +1,7 @@
-require './lib/app_server/tic_tac_toe/lib/computer_ai'
+require './lib/app_server/app/tic_tac_toe/lib/computer_ai'
+require './lib/app_server/app/tic_tac_toe/lib/board.rb'
 require 'minitest/autorun'
 require 'minitest/unit'
-require './lib/app_server/tic_tac_toe/lib/board.rb'
 
 class TestComputerAI < Minitest::Test
   def setup

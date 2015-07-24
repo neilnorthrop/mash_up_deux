@@ -1,8 +1,8 @@
+require './lib/app_server/app/tic_tac_toe/lib/board'
+require './lib/app_server/app/tic_tac_toe/lib/computer_ai'
+require './lib/app_server/app/tic_tac_toe/lib/player'
 require 'minitest/autorun'
 require 'minitest/unit'
-require './lib/app_server/tic_tac_toe/lib/board'
-require './lib/app_server/tic_tac_toe/lib/computer_ai'
-require './lib/app_server/tic_tac_toe/lib/player'
 
 class TestConsoleMover < Minitest::Test
   def setup

@@ -1,4 +1,4 @@
-require './lib/app_server/tic_tac_toe/lib/board4x4'
+require './lib/app_server/app/tic_tac_toe/lib/board4x4'
 require 'minitest/autorun'
 require 'minitest/unit'
 

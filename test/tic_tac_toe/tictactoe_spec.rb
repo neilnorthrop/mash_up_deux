@@ -1,6 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
-require Dir.pwd + '/lib/app_server/tic_tac_toe/lib/tictactoe.rb'
+require Dir.pwd + '/lib/app_server/app/tic_tac_toe/lib/tictactoe.rb'
 require 'spec_helper'
 require 'capybara'
 require 'capybara/dsl'

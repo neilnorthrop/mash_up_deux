@@ -1,6 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
-require './lib/app_server/tic_tac_toe/lib/board.rb'
+require './lib/app_server/app/tic_tac_toe/lib/board.rb'
 require 'minitest/autorun'
 require 'minitest/unit'
 
