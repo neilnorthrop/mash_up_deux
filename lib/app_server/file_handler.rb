@@ -1,4 +1,5 @@
 class FileHandler
+
   attr_accessor :path, :body, :response_code, :content_type, :file_size
 
   CONTENT_TYPE_MAPPING = {
@@ -22,12 +23,13 @@ class FileHandler
   }
 
   DEFAULT_CONTENT_TYPE = 'application/octet-stream'
+  WEB_ROOT = './lib/app_server/app/tic_tac_toe/views/'
 
-  DEFAULT_INDEX = 'index.html'
+  DEFAULT_INDEX = 'game.haml'
   NOT_FOUND = './public/404.html'
 
   def initialize(path="")
-    @path          = path
+    @path          = clean_path(path)
     @body          = ""
     @response_code = ""
     @content_type  = ""
@@ -55,6 +57,17 @@ class FileHandler
     else
       @response_code = RESPONSE_CODE.rassoc('Not Found').join("/")
     end
+  end
+
+  def clean_path(path)
+    clean = []
+
+    parts = path.split("/")
+    parts.each do |part|
+      next if part.empty? || part == '.'
+      part == '..' ? clean.pop : clean << part
+    end
+    File.join(WEB_ROOT, *clean)
   end
 
 end

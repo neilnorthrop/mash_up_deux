@@ -8,5 +8,8 @@ level: 0 #debug
 
 # The commented output line will default output to the stdout.
 # Uncomment the line below and edit where the logs output to.
-
 output: 'log/server.log'
+
+# This will load a default html page unless one is specified in the file_config.rb file.
+file_path:    './lib/app_server/app/tic_tac_toe/views/'
+file_default: 'game.haml'
