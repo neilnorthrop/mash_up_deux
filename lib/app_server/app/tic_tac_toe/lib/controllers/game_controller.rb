@@ -1,5 +1,5 @@
 require 'haml'
-require_relative 'ApplicationController'
+require_relative 'application_controller'
 
 class GameController < ApplicationController
 	def run(board)
