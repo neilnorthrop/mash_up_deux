@@ -22,4 +22,16 @@ class FileHandlerTest < MiniTest::Test
     assert_equal '404/Not Found', @file_handler.response_code
   end
 
+  def test_requested_file_joins_a_resource
+    assert_equal './lib/app_server/app/tic_tac_toe/views/index.html', @file_handler.clean_path('/index.html')
+  end
+
+  def test_requested_file_keeps_directories
+    assert_equal './lib/app_server/app/tic_tac_toe/views/hello/index.html', @file_handler.clean_path('/../../../hello/index.html')
+  end
+
+  def test_requested_file_removes_change_directories
+    assert_equal './lib/app_server/app/tic_tac_toe/views/index.html', @file_handler.clean_path('/../../hello/../index.html')
+  end
+
 end
