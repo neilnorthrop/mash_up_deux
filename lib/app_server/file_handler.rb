@@ -48,12 +48,11 @@ class FileHandler
     CONTENT_TYPE_MAPPING.fetch(ext, DEFAULT_CONTENT_TYPE)
   end
 
-  def handle_file(path)
-    path = File.join(path, DEFAULT_INDEX) if File.directory?(path)
-    if File.exist?(path) && !File.directory?(path)
-      build_body(path)
+  def handle_file
+    if File.exist?(@path) && !File.directory?(@path)
+      build_body(@path)
       @response_code = RESPONSE_CODE.rassoc('OK').join("/")
-      @content_type = get_content_type(path)
+      @content_type = get_content_type(@path)
     else
       @response_code = RESPONSE_CODE.rassoc('Not Found').join("/")
     end
@@ -67,7 +66,8 @@ class FileHandler
       next if part.empty? || part == '.'
       part == '..' ? clean.pop : clean << part
     end
-    File.join(WEB_ROOT, *clean)
+    path = File.join(WEB_ROOT, *clean)
+    path = File.join(path, DEFAULT_INDEX) if File.directory?(path)
   end
 
 end
