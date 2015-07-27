@@ -1,14 +1,4 @@
-require_relative 'file_handler'
-require_relative 'response'
-
 class Request
-
-  def build(string)
-    request = parse(string)
-    file_handler = FileHandler.new(request[:resource])
-    file_handler.handle_file
-    return Response.build_header(file_handler)
-  end
 
   def parse(string)
     pattern = /\A(?<method>\w+)\s+(?<resource>\S+)\s+(?<version>\S+)/
