@@ -1,9 +1,9 @@
 class RequestObserver
-  def initialize(request)
-    @request = request
+  def initialize(app)
+    @app = app
   end
 
   def build(string)
-    return @request.build(string)
+    return @app.handle(string)
   end
 end
