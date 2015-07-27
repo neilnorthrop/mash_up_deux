@@ -23,9 +23,9 @@ class FileHandler
   }
 
   DEFAULT_CONTENT_TYPE = 'application/octet-stream'
-  WEB_ROOT = './lib/app_server/app/tic_tac_toe/views/'
+  WEB_ROOT = './lib/app_server/app/tic_tac_toe/views'
 
-  DEFAULT_INDEX = 'game.haml'
+  DEFAULT_INDEX = '/game.haml'
   NOT_FOUND = './public/404.html'
 
   def initialize(path="")
@@ -68,6 +68,7 @@ class FileHandler
     end
     path = File.join(WEB_ROOT, *clean)
     path = File.join(path, DEFAULT_INDEX) if File.directory?(path)
+    return path
   end
 
 end
