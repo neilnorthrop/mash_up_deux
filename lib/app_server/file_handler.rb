@@ -54,6 +54,7 @@ class FileHandler
       @response_code = RESPONSE_CODE.rassoc('OK').join("/")
       @content_type = get_content_type(@path)
     else
+      build_body('./public/404.html')
       @response_code = RESPONSE_CODE.rassoc('Not Found').join("/")
     end
   end
