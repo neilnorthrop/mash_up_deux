@@ -5,27 +5,29 @@ class ClassLoader
     @path_to_files = path
     @loaded_files  = []
     @classes       = []
-    load_files
   end
 
   def directory_listing
     Dir.new(Dir.pwd + path_to_files)
   end
 
-  def controllers
+  def dir_files
     directory_listing.entries
   end
 
+  def requiring(controller)
+    require Dir.pwd + path_to_files + controller
+  end
+
   def load_files
-    controllers.each do |controller|
+    dir_files.each do |controller|
       next if controller == "." or controller == ".."
-      require Dir.pwd + path_to_files + "/" + controller
       loaded_files << controller
-      classes << file_name_to_class(controller)
+      classes << file_name_to_class_name(controller)
     end
   end
 
-  def file_name_to_class(file_name)
+  def file_name_to_class_name(file_name)
     file_name.chomp('.rb').split('_').each(&:capitalize!).join
   end
 
@@ -35,7 +37,4 @@ class ClassLoader
     end
   end
 
-  def draw
-    yield
-  end
 end
