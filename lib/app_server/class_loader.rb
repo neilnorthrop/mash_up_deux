@@ -19,11 +19,14 @@ class ClassLoader
     require Dir.pwd + path_to_files + controller
   end
 
-  def load_files
+  def collect_class_names
+    classes << file_name_to_class_name(controller)
+  end
+
+  def collect_file_names
     dir_files.each do |controller|
       next if controller == "." or controller == ".."
       loaded_files << controller
-      classes << file_name_to_class_name(controller)
     end
   end
 
@@ -31,9 +34,15 @@ class ClassLoader
     file_name.chomp('.rb').split('_').each(&:capitalize!).join
   end
 
+  def run
+    collect_file_names
+    return classify
+  end
+
+  private
   def classify
     classes.each do |klass|
-      p Object.const_get(klass).new
+      Object.const_get(klass).new
     end
   end
 
