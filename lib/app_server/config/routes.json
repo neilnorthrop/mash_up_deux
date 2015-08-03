@@ -1,4 +1,12 @@
 {
-  'GET  /game.haml' : 'GameController.send(:run)',
-  'POST /board.haml' : 'BoardController.send(:run)'
+  "gets" :
+    {
+      "resource" : "GET  /game.haml",
+      "route" : "GameController.send(:run)"
+    },
+  "post" :
+    {
+      "resource" : "POST /board.haml",
+      "route" : "BoardController.send(:run)"
+    }
 }
