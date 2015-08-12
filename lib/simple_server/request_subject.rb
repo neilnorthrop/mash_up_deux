@@ -13,7 +13,7 @@ module RequestSubject
 
   def notify_observers(request)
     @observers.each do |observer|
-      return observer.build(request)
+      return observer.notify(request)
     end
   end
 end
