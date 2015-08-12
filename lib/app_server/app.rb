@@ -1,6 +1,5 @@
 require_relative 'request'
 require_relative 'file_handler'
-require_relative 'response'
 require_relative 'router'
 require_relative './app/tic_tac_toe/lib/player'
 require_relative './app/tic_tac_toe/lib/computer_ai'
