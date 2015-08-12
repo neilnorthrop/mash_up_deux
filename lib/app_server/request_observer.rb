@@ -3,7 +3,7 @@ class RequestObserver
     @app = app
   end
 
-  def build(string)
+  def notify(string)
     return @app.handle(string)
   end
 end
