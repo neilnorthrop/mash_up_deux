@@ -1,9 +1,9 @@
 class Request
 
   def parse(string)
-    pattern = /\A(?<method>\w+)\s+(?<resource>\S+)\s+(?<version>\S+)/
+    pattern = /\A(?<method>\w+)\s+(?<resource>\S+)/
     match = pattern.match(string)
-    return { :method => match["method"], :resource => match["resource"], :version => match["version"], :body => split_body(string) }
+    return { :method => match["method"], :resource => match["resource"], :params => split_body(string) }
   end
 
   def split_body(string)
