@@ -1,3 +1,5 @@
+require 'haml'
+
 class Response
   attr_reader :header, :body
 
@@ -15,11 +17,7 @@ class Response
   def stream
     string = ""
     string += self.header
-    if self.body.class == File
-      string += File.read(self.body)
-    else
-      string += self.body
-    end
+    string += self.body
     return string
   end
 
