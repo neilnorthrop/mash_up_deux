@@ -1,6 +1,5 @@
-require 'haml'
-require 'haml_builder'
-require 'html_builder'
+require_relative 'haml_builder'
+require_relative 'html_builder'
 
 class FileHandler
 
@@ -27,14 +26,14 @@ class FileHandler
   }
 
   DEFAULT_CONTENT_TYPE = 'application/octet-stream'
-  WEB_ROOT = './lib/app_server/app/tic_tac_toe/views'
+  WEB_ROOT = './lib/app_server/app/tic_tac_toe/public'
 
   DEFAULT_INDEX = '/game.haml'
   NOT_FOUND = './public/404.html'
 
   def initialize(path="")
     @path          = clean_path(path)
-    @builder       = pick_builder(path)
+    @builder       = pick_builder(@path)
     @body          = ""
     @response_code = ""
     @content_type  = ""
@@ -42,33 +41,16 @@ class FileHandler
   end
 
   def pick_builder(path)
-    return eval("#{extention_type(path).capitalize}Builder.new")
-  end
-
-  def build_body(path)
-    case extention_type(path)
-    when 'html'
-      file = build_html(path)
-      get_size(file)
-      return file
-    when 'haml'
-      file = build_haml(path)
-      get_size(file)
-      return file
+    if extention_type(path) == 'haml'
+      return HamlBuilder.new
     else
-      file = build_static(path)
-      get_size(file)
-      return file
+      return HtmlBuilder.new
     end
   end
 
-  def build_html(path)
-    @body = File.read(path)
-  end
-
-  def build_haml(path)
-    p path
-    @body = Haml::Engine.new(File.read(path)).render
+  def build_body(path)
+    @body = @builder.build(path)
+    get_size(@body)
   end
 
   def get_content_type(path)
@@ -85,7 +67,6 @@ class FileHandler
       build_body(@path)
       @response_code = RESPONSE_CODE.rassoc('OK').join("/")
       @content_type = get_content_type(@path)
-      p self
     else
       build_body('./public/404.html')
       @response_code = RESPONSE_CODE.rassoc('Not Found').join("/")
