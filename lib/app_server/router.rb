@@ -1,5 +1,4 @@
 require 'json'
-require_relative 'file_handler'
 require_relative 'response'
 require_relative 'class_loader'
 
@@ -22,8 +21,6 @@ class Router
   end
 
   def route(request)
-    file = FileHandler.new(request[:resource])
-    file.handle_file
     return Response.build_header(file)
   end
 
