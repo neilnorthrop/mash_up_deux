@@ -51,6 +51,6 @@ end
 
 class WebMover < Mover
   def get_move(args = {})
-    args[:player_move].to_i
+    args["player_move"].to_i
   end
 end

@@ -11,7 +11,6 @@ class ClassLoader
     collect_file_names
     file_require
     collect_class_names
-    return classify
   end
 
   def file_require

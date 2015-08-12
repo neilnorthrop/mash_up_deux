@@ -3,14 +3,16 @@ require_relative 'html_builder'
 
 class FileHandler
 
-  attr_accessor :path, :body, :response_code, :content_type, :file_size
+  attr_accessor :path, :body, :response_code, :content_type, :file_size, :opt
 
   CONTENT_TYPE_MAPPING = {
     'html' => 'text/html',
     'txt'  => 'text/plain',
     'png'  => 'image/png',
     'jpg'  => 'image/jpg',
-    'haml' => 'text/html'
+    'haml' => 'text/html',
+    'css'  => 'text/css',
+    'js'   => 'application/javascript'
   }
 
   RESPONSE_CODE = {
@@ -31,13 +33,14 @@ class FileHandler
   DEFAULT_INDEX = '/game.haml'
   NOT_FOUND = './public/404.html'
 
-  def initialize(path="")
+  def initialize(path="", opt)
     @path          = clean_path(path)
     @builder       = pick_builder(@path)
     @body          = ""
     @response_code = ""
     @content_type  = ""
     @file_size     = 0
+    @opt           = opt
   end
 
   def pick_builder(path)
@@ -48,8 +51,8 @@ class FileHandler
     end
   end
 
-  def build_body(path)
-    @body = @builder.build(path)
+  def build_body(path, opt)
+    @body = @builder.build(path, opt)
     get_size(@body)
   end
 
@@ -64,7 +67,7 @@ class FileHandler
 
   def handle_file
     if File.exist?(@path) && !File.directory?(@path)
-      build_body(@path)
+      build_body(@path, @opt)
       @response_code = RESPONSE_CODE.rassoc('OK').join("/")
       @content_type = get_content_type(@path)
     else

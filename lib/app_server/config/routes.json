@@ -2,11 +2,13 @@
   "GET" :
     {
       "resource" : "/game.haml",
-      "route" : "GameController.new.send(:run)"
+      "controller" : "GameController",
+      "method" : "run"
     },
   "POST" :
     {
       "resource" : "/board.haml",
-      "route" : "BoardController.new.send(:run, body)"
+      "controller" : "BoardController",
+      "method" : "move"
     }
 }

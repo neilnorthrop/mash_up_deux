@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 
 class Game
-  attr_reader :board, :current_player
+  attr_reader :board, :current_player, :id
 
   def initialize(board, player_one, player_two)
     @board = board
@@ -18,6 +18,11 @@ class Game
   def toggle_players
     @current_player = (@player_collection - [@current_player]).shift
   end
+
+  def add_id(id)
+    @id = id
+  end
+
 end
 
 class WebOutput

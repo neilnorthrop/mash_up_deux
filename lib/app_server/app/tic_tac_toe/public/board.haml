@@ -9,10 +9,9 @@
   %body
     .board
       - game.board.board.each do |cell|
-        %form{:action => "/turn", :method => "post"}
+        %form{:action => "/board.haml", :method => "post"}
           %input{:type => "hidden", :name => "game_id", :value => game.id}
           %input{:type => "hidden", :name => "player_move", :value => "#{cell}"}
-
           %input.cell{:type => "submit", :id => "cell#{cell}", :value => "#{cell}" }
 
     - if game.board.game_over?

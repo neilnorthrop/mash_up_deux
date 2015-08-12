@@ -1,13 +1,12 @@
 require 'json'
-require_relative 'response'
 require_relative 'class_loader'
 
 class Router
-  attr_accessor :routes_path, :loader, :routes
+  attr_accessor :loaded_routes, :loader, :routes
 
   def initialize
-    @routes_path = './lib/app_server/config/routes.json'
-    @routes      = load_classes
+    @loaded_routes = JSON.parse(File.read(Dir.pwd + '/lib/app_server/config/routes.json'), symbolize_names: true)
+    @routes        = load_classes
   end
 
   def load_classes
@@ -16,12 +15,24 @@ class Router
     return class_loader
   end
 
-  def load_routes
-    JSON.parse(File.read(routes_path), symbolize_names: true)
+  def get_controller(request)
+    method = request[:method].to_sym
+    routes = loaded_routes[method]
+    controller = routes[:controller]
+    return controller
+  end
+
+  def get_method(request)
+    method = request[:method].to_sym
+    routes = loaded_routes[method]
+    method = routes[:method]
+    return method
   end
 
   def route(request)
-    return Response.build_header(file)
+    controller = get_controller(request)
+    method = get_method(request)
+    return Object.const_get(controller).new(request[:params]).send(method, request[:resource])
   end
 
 end

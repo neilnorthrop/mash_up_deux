@@ -1,5 +1,5 @@
 class HtmlBuilder
-  def build(path)
+  def build(path, opt)
     File.read(path)
   end
 end

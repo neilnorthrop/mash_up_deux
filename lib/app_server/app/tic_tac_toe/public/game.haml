@@ -9,6 +9,6 @@
   %body
   %h3 Pick your opponent:
 
-  %form{ :action => "/board", :method => "post" }
+  %form{ :action => "/board.haml", :method => "post" }
     %input{ :type => "submit", :name => "opponent", :id => "computer", :value => "Computer" }
     %input{ :type => "submit", :name => "opponent", :id => "player", :value => "Player" }
