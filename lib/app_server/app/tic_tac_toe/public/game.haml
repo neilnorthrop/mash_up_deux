@@ -7,10 +7,8 @@
     %script(type="text/javascript" src="javascript/application.js")
   %h1 Welcome to Tic Tac Toe!
   %body
-  %h3 Pick your board size and opponent:
+  %h3 Pick your opponent:
 
-  %form{ :action => "/decide", :method => "post" }
-    %input{ :type => "radio", :name => "board", :id => "3x3", :value => "" } 3x3
-    %input{ :type => "radio", :name => "board", :id => "4x4", :value => "4x4" } 4x4
+  %form{ :action => "/board", :method => "post" }
     %input{ :type => "submit", :name => "opponent", :id => "computer", :value => "Computer" }
     %input{ :type => "submit", :name => "opponent", :id => "player", :value => "Player" }
