@@ -10,10 +10,6 @@ require 'facets'
 class ApplicationController
 	attr_accessor :params
 
-  def initialize(params)
-    parse(params)
-  end
-
   def handle(file, opt=nil)
     file = FileHandler.new(file, opt)
     file.handle_file

@@ -4,10 +4,6 @@ require_relative 'application_controller'
 class BoardController < ApplicationController
   attr_accessor :game, :game_id
 
-  def initialize(params)
-    super(params)
-  end
-
   def find_or_create_game
     if @params["game_id"].nil?
       game_id = rand_id

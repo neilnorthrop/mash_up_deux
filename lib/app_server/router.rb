@@ -32,7 +32,9 @@ class Router
   def route(request)
     controller = get_controller(request)
     method = get_method(request)
-    return Object.const_get(controller).new(request[:params]).send(method, request[:resource])
+    controller = Object.const_get(controller).new()
+    controller.parse(request[:params])
+    controller.send(method, request[:resource])
   end
 
 end
