@@ -51,11 +51,10 @@ class BoardController < ApplicationController
 
   def processing_turn(game, turn)
     game.next_move(turn)
-    if check_game_over(game) == :draw
-      puts "ITS A DRAW"
+    game.toggle_players
+    if check_game_over(game)
+      return
     else
-      p "NOT A DRAW"
-      game.toggle_players
       if game.current_player.mover.class == ComputerMover
         game.next_move(turn)
         game.toggle_players
